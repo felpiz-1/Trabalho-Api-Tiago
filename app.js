@@ -10,6 +10,7 @@ let pokemonId = "1"
 
 async function consultarPokemonId(pokemonId) {
     const urlId = await(await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)).json();
+    
     filtrarDadosPokemom(urlId);
     // console.log(urlId);
 
