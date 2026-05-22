@@ -32,22 +32,27 @@ async function consultarPokemonId(pokemonId) {
 
 function filtrarDadosPokemom(pokemon){
     const elemento = {  
+    
+    /* caracteristicas base */
         id: pokemon.id,
         nome: pokemon.name,
         altura: pokemon.height/10,
         peso: pokemon.weight/10,
         imagem: pokemon.sprites.front_default,
-    };
-    console.log(elemento)
-
+    
+    /* Atributos do Pokemon */
+    }
     inserirDados(elemento)
-}
+};
 
 function inserirDados(dados){
 
 let img = document.querySelector("img")
+let titulo = document.getElementById("titulo")
 
 img.src = dados.imagem;
+titulo.textContent = dados.nome.charAt(0).toUpperCase() + dados.nome.slice(1);
+
 
 
 }
