@@ -1,16 +1,30 @@
-// let pokemon = "ditto"
+const elementoBusca = {
+    form: document.getElementById('formPesquisa'),
+    input: document.getElementById('inputPesquisa'),
+    btnPesquisa: document.getElementById('btnPesquisa'),
+}
 
-// async function consultarPokemom(pokemon) {
-//     const url = await (await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)).json()
-//     // console.log(url)
-// }
-// // consultarPokemom(pokemon);
 
-let pokemonId = "1"
+const idDigitado = {
+    idDigitado: ("")
+}
+
+
+elementoBusca.form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    getIdDigitado(elementoBusca.input.value)
+})
+
+function getIdDigitado(pokemonId){
+    // idDigitado.input = pokemonId;
+    consultarPokemonId(pokemonId)
+}
+
+
+// let pokemonId = "10"
 
 async function consultarPokemonId(pokemonId) {
     const urlId = await(await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)).json();
-    
     filtrarDadosPokemom(urlId);
     // console.log(urlId);
 
@@ -22,9 +36,18 @@ function filtrarDadosPokemom(pokemon){
         nome: pokemon.name,
         altura: pokemon.height/10,
         peso: pokemon.weight/10,
-        img: pokemon.sprites.front_default,
+        imagem: pokemon.sprites.front_default,
     };
     console.log(elemento)
+
+    inserirDados(elemento)
 }
 
-consultarPokemonId(pokemonId);
+function inserirDados(dados){
+
+let img = document.querySelector("img")
+
+img.src = dados.imagem;
+
+
+}
