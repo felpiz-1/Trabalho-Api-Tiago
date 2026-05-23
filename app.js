@@ -48,11 +48,14 @@ function filtrarDadosPokemom(pokemon){
 function inserirDados(dados){
 
 let img = document.querySelector("img")
-let titulo = document.getElementById("titulo")
+let nome = document.getElementById("pokemonNome")
+let altura = document.getElementById("pokemonAltura")
+let peso= document.getElementById("pokemonPeso")
 
 img.src = dados.imagem;
-titulo.textContent = dados.nome.charAt(0).toUpperCase() + dados.nome.slice(1);
-
+nome.textContent = `  ${dados.nome.charAt(0).toUpperCase() + dados.nome.slice(1)}`;
+altura.textContent = dados.altura;
+peso.textContent = dados.peso;
 
 
 }
