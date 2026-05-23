@@ -1,48 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokedex</title>
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
 <body>
 
     <header>
-        <H1>icone</H1>
+        <h1>icone</h1>
         <nav>
-            <form action=""
-            id="formPesquisa">
+            <form action="" id="formPesquisa">
                 <input 
                 id="inputPesquisa"
                 class="inputDePesquisa"
                 type="text"
                 placeholder="Insira um id"
                 >
-                <button id="btnPesquisa">Pesquisar</button>
+                <button type="submit" id="btnPesquisa">Pesquisar</button>
             </form>
         </nav>
     </header>
 
     <div class="titulo">
-        <h1 id="titulo"></h1>
+        <h1 id="titulo">Busca de Pokémon</h1>
     </div>
 
     <main>
 
         <article class="caixaDaImagem">
-            <img src="" alt="foto do pokemon">
+            <img src="" alt="foto do pokemon" id="pokemonIMG">
         </article>
 
         <article class="displayDeInformações">
-            <p>Texto</p>
-            <p>Texto</p>
-            <p>Texto</p>
-            <p>Texto</p>
+            <p>Nome: <span id="pokemonNome"></span></p>
+            <p>Tipos:<span id="pokemonTipos"></span></p>
+            <p>Habilidade: <span id="pokemonHabilidade"></span></p>
+            <p>Peso: <span id="pokemonPeso"></span></p>
             <div>
-                <button>Botão</button>
-                <button>Botão</button>
+                <button type="button" id="btnAnterior">Anterior</button>
+                <button type="button" id="btnProximo">Proximo</button>
             </div>
         </article>
 
