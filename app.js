@@ -28,15 +28,17 @@ async function consultarPokemonId(pokemonId) {
 
 function filtrarDadosPokemom(pokemon){
     const elemento = {  
-    
-    /* caracteristicas base */
         id: pokemon.id,
         nome: pokemon.name,
         altura: pokemon.height/10,
         peso: pokemon.weight/10,
         imagem: pokemon.sprites.other['official-artwork'].front_default,
+        habilidades: pokemon.abilities.map(item => item.ability.name).join(', '),
+        tipos: pokemon.types.map(item => item.type.name).join(', '),
+        ataque: pokemon.stats[1].base_stat,
+        defesa: pokemon.stats[2].base_stat
     
-    /* Atributos do Pokemon */
+    
     }
     inserirDados(elemento)
 };
@@ -47,11 +49,23 @@ let img = document.querySelector("img")
 let nome = document.getElementById("pokemonNome")
 let altura = document.getElementById("pokemonAltura")
 let peso= document.getElementById("pokemonPeso")
+let habilidades = document.getElementById("pokemonHabilidade")
+let tipos = document.getElementById("pokemonTipos")
+let ataque = document.getElementById("txtAtaque")
+let defesa = document.getElementById("txtDefesa")
+let barraAtaque = document.getElementById("barraAtaque");
+let barraDefesa = document.getElementById("barraDefesa");
 
 img.src = dados.imagem;
 nome.textContent = `  ${dados.nome.charAt(0).toUpperCase() + dados.nome.slice(1)}`;
-altura.textContent = dados.altura;
-peso.textContent = dados.peso;
+altura.textContent = ` ${dados.altura} m`
+peso.textContent = ` ${dados.peso} Kg`
+habilidades.textContent = dados.habilidades;
+tipos.textContent = dados.tipos;
+ataque.textContent = dados.ataque;
+defesa.textContent = dados.defesa;
+barraAtaque.value = dados.ataque;
+barraDefesa.value = dados.defesa;
 }
 
 const btnProximo = document.getElementById("btnProximo")

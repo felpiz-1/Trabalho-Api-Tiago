@@ -30,21 +30,25 @@
 
     <main>
 
-        <article class="caixaDaImagem">
+        <section class="caixaDaImagem">
             <img src="" alt="foto do pokemon" id="pokemonIMG">
-        </article>
+        </section>
 
-        <article class="displayDeInformações">
+        <section class="displayDeInformações">
             <p>Nome: <span id="pokemonNome"> </span></p>
-            <p>Tipos: <span id="pokemonTipos"></span></p>
-            <p>Habilidade: <span id="pokemonHabilidade"></span></p>
             <p>Peso: <span id="pokemonPeso"></span></p>
             <p>Altura: <span id="pokemonAltura"></span></p>
+            <p>Tipos: <span id="pokemonTipos"></span></p>
+            <p>Habilidade: <span id="pokemonHabilidade"></span></p>
+            <label for="barraAtaque">Ataque: <span id="txtAtaque">0</span></label>
+            <progress id="barraAtaque" class="barra-progresso ataque" value="0" max="255"></progress>
+            <label for="barraDefesa">Defesa: <span id="txtDefesa">0</span></label>
+            <progress id="barraDefesa" class="barra-progresso defesa" value="0" max="255"></progress>    
             <div>
                 <button type="button" id="btnAnterior">Anterior</button>
                 <button type="button" id="btnProximo">Proximo</button>
             </div>
-        </article>
+        </section>
 
     </main>
 
