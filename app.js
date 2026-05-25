@@ -1,27 +1,24 @@
 const elementoBusca = {
     form: document.getElementById('formPesquisa'),
     input: document.getElementById('inputPesquisa'),
-    btnPesquisa: document.getElementById('btnPesquisa'),
 }
-
-
-const idDigitado = {
-    idDigitado: ("")
-}
-
 
 elementoBusca.form.addEventListener('submit', (event) => {
     event.preventDefault();
-    getIdDigitado(elementoBusca.input.value)
+    nomeIdDigitado(elementoBusca.input.value);
 })
 
-function getIdDigitado(pokemonId){
-    // idDigitado.input = pokemonId;
-    consultarPokemonId(pokemonId)
+function nomeIdDigitado(valorDigitado){
+    let valorLimpo = valorDigitado
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '')
+    .replace(/[^a-zA-Z0-9-]/g, '')
+    consultarPokemonId(valorLimpo)
 }
 
 
-// let pokemonId = "10"
+let idAtual = "10"
 
 async function consultarPokemonId(pokemonId) {
     const urlId = await(await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)).json();
