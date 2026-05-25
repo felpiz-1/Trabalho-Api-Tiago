@@ -18,13 +18,12 @@ function nomeIdDigitado(valorDigitado){
 }
 
 
-let idAtual = "10"
+let idAtual = 0
 
 async function consultarPokemonId(pokemonId) {
     const urlId = await(await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)).json();
     filtrarDadosPokemom(urlId);
-    // console.log(urlId);
-
+    idAtual = urlId.id;
 }
 
 function filtrarDadosPokemom(pokemon){
@@ -35,7 +34,7 @@ function filtrarDadosPokemom(pokemon){
         nome: pokemon.name,
         altura: pokemon.height/10,
         peso: pokemon.weight/10,
-        imagem: pokemon.sprites.front_default,
+        imagem: pokemon.sprites.other['official-artwork'].front_default,
     
     /* Atributos do Pokemon */
     }
@@ -53,6 +52,24 @@ img.src = dados.imagem;
 nome.textContent = `  ${dados.nome.charAt(0).toUpperCase() + dados.nome.slice(1)}`;
 altura.textContent = dados.altura;
 peso.textContent = dados.peso;
-
-
 }
+
+const btnProximo = document.getElementById("btnProximo")
+const btnAnterior = document.getElementById("btnAnterior")
+
+    btnAnterior.addEventListener('click', (event) => {
+        idAtual --;
+        if(idAtual <= 0){
+            idAtual = 1025
+        }
+    consultarPokemonId(idAtual)
+    })
+
+    btnProximo.addEventListener('click', (event) => {
+        idAtual ++;
+        if(idAtual == 1026){
+            idAtual = 1
+        }
+    consultarPokemonId(idAtual)
+    })
+
