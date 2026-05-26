@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
 </head>
 <body>
 
     <header>
-        <h1>icone</h1>
+        <img src="img/pokebolau.png" alt="" class="imgIcone">
         <nav>
             <form id="formPesquisa">
                 <input 
@@ -31,19 +31,21 @@
     <main>
 
         <section class="caixaDaImagem">
-            <img src="" alt="foto do pokemon" id="pokemonIMG">
+            <img src="#" alt="foto do pokemon" id="pokemonIMG">
         </section>
 
         <section class="displayDeInformações">
             <p>Nome: <span id="pokemonNome"> </span></p>
-            <p>Peso: <span id="pokemonPeso"></span></p>
-            <p>Altura: <span id="pokemonAltura"></span></p>
+            <div class="pesoAltura">
+                <p>Peso: <span id="pokemonPeso"></span></p>
+                <p>Altura: <span id="pokemonAltura"></span></p>
+           </div>
             <p>Tipos: <span id="pokemonTipos"></span></p>
             <p>Habilidade: <span id="pokemonHabilidade"></span></p>
             <label for="barraAtaque">Ataque: <span id="txtAtaque">0</span></label>
             <progress id="barraAtaque" class="barra-progresso ataque" value="0" max="255"></progress>
             <label for="barraDefesa">Defesa: <span id="txtDefesa">0</span></label>
-            <progress id="barraDefesa" class="barra-progresso defesa" value="0" max="255"></progress>    
+            <progress id="barraDefesa" value="0" max="255"></progress>    
             <div>
                 <button type="button" id="btnAnterior">Anterior</button>
                 <button type="button" id="btnProximo">Proximo</button>

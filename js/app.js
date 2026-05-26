@@ -6,6 +6,7 @@ const elementoBusca = {
 elementoBusca.form.addEventListener('submit', (event) => {
     event.preventDefault();
     nomeIdDigitado(elementoBusca.input.value);
+    elementoBusca.input.value = ""
 })
 
 function nomeIdDigitado(valorDigitado){
@@ -21,9 +22,43 @@ function nomeIdDigitado(valorDigitado){
 let idAtual = 0
 
 async function consultarPokemonId(pokemonId) {
-    const urlId = await(await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)).json();
-    filtrarDadosPokemom(urlId);
-    idAtual = urlId.id;
+    try {
+        const respostaApi = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        if(respostaApi.status == 404 ){
+            document.getElementById("pokemonIMG").src = "img/erroNaoEncontrado.jpeg"
+            document.getElementById("pokemonNome").textContent = "-"
+            document.getElementById("pokemonAltura").textContent = "-"
+            document.getElementById("pokemonPeso").textContent = "-"
+            document.getElementById("pokemonHabilidade").textContent = "-"
+            document.getElementById("pokemonTipos").textContent = "-"
+            document.getElementById("txtAtaque").textContent = "-"
+            document.getElementById("txtDefesa").textContent = "-"
+            return;
+        }
+        else if(respostaApi.status >= 500){
+            document.getElementById("pokemonIMG").src = "img/erroDeServidor.jpeg"
+            document.getElementById("pokemonNome").textContent = "-"
+            document.getElementById("pokemonAltura").textContent = "-"
+            document.getElementById("pokemonPeso").textContent = "-"
+            document.getElementById("pokemonHabilidade").textContent = "-"
+            document.getElementById("pokemonTipos").textContent = "-"
+            document.getElementById("txtAtaque").textContent = "-"
+            document.getElementById("txtDefesa").textContent = "-"
+            return;
+        }
+        const urlId = await respostaApi.json();
+        filtrarDadosPokemom(urlId);
+        idAtual = urlId.id;
+    } catch (error) {
+        document.getElementById("pokemonIMG").src = "img/erroDeRede.jpeg"
+        document.getElementById("pokemonNome").textContent = "-"
+        document.getElementById("pokemonAltura").textContent = "-"
+        document.getElementById("pokemonPeso").textContent = "-"
+        document.getElementById("pokemonHabilidade").textContent = "-"
+        document.getElementById("pokemonTipos").textContent = "-"
+        document.getElementById("txtAtaque").textContent = "-"
+        document.getElementById("txtDefesa").textContent = "-"
+    }
 }
 
 function filtrarDadosPokemom(pokemon){
@@ -45,7 +80,7 @@ function filtrarDadosPokemom(pokemon){
 
 function inserirDados(dados){
 
-let img = document.querySelector("img")
+let img = document.getElementById("pokemonIMG")
 let nome = document.getElementById("pokemonNome")
 let altura = document.getElementById("pokemonAltura")
 let peso= document.getElementById("pokemonPeso")
@@ -53,8 +88,8 @@ let habilidades = document.getElementById("pokemonHabilidade")
 let tipos = document.getElementById("pokemonTipos")
 let ataque = document.getElementById("txtAtaque")
 let defesa = document.getElementById("txtDefesa")
-let barraAtaque = document.getElementById("barraAtaque");
-let barraDefesa = document.getElementById("barraDefesa");
+let barraAtaque = document.getElementById("barraAtaque")
+let barraDefesa = document.getElementById("barraDefesa")
 
 img.src = dados.imagem;
 nome.textContent = `  ${dados.nome.charAt(0).toUpperCase() + dados.nome.slice(1)}`;
